@@ -30,7 +30,7 @@ export function DataTable({ data, header }) {
         header: head.text,
         cell: (info) => info.getValue(),
       })),
-    [header],
+    [header]
   );
 
   const table = useReactTable({
@@ -77,7 +77,7 @@ export function DataTable({ data, header }) {
                   >
                     {flexRender(
                       header.column.columnDef.header,
-                      header.getContext(),
+                      header.getContext()
                     )}
                   </TableHead>
                 ))}
@@ -96,10 +96,17 @@ export function DataTable({ data, header }) {
                   `}
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id} className="text-gray-700">
+                    <TableCell
+                      key={cell.id}
+                      className={
+                        cell.column.columnDef.accessorKey === "notes"
+                          ? "max-w-[200px] truncate"
+                          : ""
+                      }
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext(),
+                        cell.getContext()
                       )}
                     </TableCell>
                   ))}
